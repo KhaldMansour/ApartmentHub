@@ -38,7 +38,6 @@ export class SearchApartmentDto {
     required: false
   })
   @IsOptional()
-  @IsInt()
   @IsPositive()
   @Transform(({ value }) => parseFloat(value))
     price?: number;

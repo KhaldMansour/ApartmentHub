@@ -21,7 +21,7 @@ export class Apartment {
   @Expose()
     number: number;
 
-  @Column('float')
+    @Column('decimal', { precision: 10, scale: 2 })
   @Expose()
     price: number;
 }
