@@ -1,12 +1,13 @@
+import { promisify } from 'util';
+import { exec } from 'child_process';
+
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from 'src/config/typeorm.config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { promisify } from 'util';
-import { exec } from 'child_process';
-const execPromise = promisify(exec);
 
+const execPromise = promisify(exec);
 
 import { ApartmentsModule } from './apartments/apartments.module';
 import { AppService } from './app.service';
@@ -31,7 +32,7 @@ import { ApartmentSeederService } from './apartments/services/apartment-seeder';
 export class AppModule {
   constructor(private readonly apartmentSeederService: ApartmentSeederService) {}
 
-  async onModuleInit() : Promise<void> {
+  async onModuleInit(): Promise<void> {
     // try {
     //   console.log('Running migrations...');
     //   await execPromise('npm run migrate');
@@ -41,6 +42,5 @@ export class AppModule {
     // }
     // await this.apartmentSeederService.seedApartments();
   }
-
 }
  

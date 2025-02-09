@@ -17,4 +17,3 @@ export const typeOrmConfig = {
   inject: [ConfigService]
 };
 
-
