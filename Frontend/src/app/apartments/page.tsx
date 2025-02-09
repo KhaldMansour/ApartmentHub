@@ -56,6 +56,8 @@ export default function ApartmentPage() {
         setApartments(apartments);
         setTotalPages(total);
       } catch (err) {
+        console.log(err);
+        
         setError('Failed to fetch apartments');
       } finally {
         setLoading(false);

@@ -9,7 +9,6 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
   app.setGlobalPrefix('api/v1/');
-  app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   const configService = app.get(ConfigService);
   const swaggerConfig = new DocumentBuilder()
@@ -27,6 +26,6 @@ async function bootstrap(): Promise<void> {
 
   app.enableCors();
 
-  await app.listen(4000);
+  await app.listen(3000);
 }
 bootstrap();

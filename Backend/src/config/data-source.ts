@@ -6,11 +6,11 @@ const configService = new ConfigService();
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host: configService.get<string>('DB_HOST'),
+  host: configService.get<string>('DB_HOST'), 
   port: configService.get<number>('DB_PORT'),
-  username: configService.get<string>('DB_USERNAME'),
+  username: configService.get<string>('DB_USER'), 
   password: configService.get<string>('DB_PASSWORD'),
-  database: configService.get<string>('DB_DATABASE'),
+  database: configService.get<string>('DB_NAME'),
   synchronize: false,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],

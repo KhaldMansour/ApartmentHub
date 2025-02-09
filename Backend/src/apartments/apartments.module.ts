@@ -9,6 +9,7 @@ import { ApartmentSeederService } from './services/apartment-seeder';
 @Module({
   imports: [TypeOrmModule.forFeature([Apartment])],
   controllers: [ApartmentsController],
-  providers: [ApartmentsService, ApartmentSeederService]
+  providers: [ApartmentsService, ApartmentSeederService],
+  exports: [ApartmentSeederService]
 })
 export class ApartmentsModule {}

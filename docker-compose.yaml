@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # MySQL service
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: apartment_hub
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    restart: always
+
+  # Backend service (NestJS)
+  backend:
+    build:
+      context: .
+      dockerfile: Backend/Dockerfile
+    container_name: backend
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=apartment_hub
+    depends_on:
+      - mysql
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./Backend:/app 
+    networks:
+      - app-network
+
+  # Frontend service (NextJS)
+  frontend:
+    build:
+      context: .
+      dockerfile: Frontend/Dockerfile
+    container_name: frontend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:4000  # Backend API URL for frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"  # Exposing NextJS on port 3000
+    networks:
+      - app-network
+
+# Define the network
+networks:
+  app-network:
+    driver: bridge
+
+# Volumes for MySQL data persistence
+volumes:
+  mysql_data:
+    driver: local

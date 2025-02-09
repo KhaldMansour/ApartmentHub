@@ -16,7 +16,7 @@ export class ApartmentsController {
   }
 
   @Get()
-  async findAll(@Query() query: SearchApartmentDto): Promise<{ apartments: Apartment[], total: number }> {
+  async findAll(@Query() query: SearchApartmentDto): Promise<{ apartments: Apartment[], total: number }> {    
     return await this.apartmentsService.findAll(query);
   }
 
