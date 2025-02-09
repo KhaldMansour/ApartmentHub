@@ -33,14 +33,14 @@ export class AppModule {
   constructor(private readonly apartmentSeederService: ApartmentSeederService) {}
 
   async onModuleInit(): Promise<void> {
-    // try {
-    //   console.log('Running migrations...');
-    //   await execPromise('npm run migrate');
-    //   console.log('Migrations completed!');
-    // } catch (error) {
-    //   console.error('Error running migrations:', error);
-    // }
-    // await this.apartmentSeederService.seedApartments();
+    try {
+      console.log('Running migrations...');
+      await execPromise('npm run migrate');
+      console.log('Migrations completed!');
+    } catch (error) {
+      console.error('Error running migrations:', error);
+    }
+    await this.apartmentSeederService.seedApartments();
   }
 }
  
