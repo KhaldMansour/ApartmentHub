@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ApartmentHub
 
-## Getting Started
+This is a full-stack application that allows users to view a list of apartments, see details about each apartment, and add new apartments. The application is built using Node.js (NestJs)(TypeScript) for the backend and Next.js for the frontend, with a relational database (MySql) to store the apartment data. The application is containerized with Docker and Docker Compose for easy deployment.
 
-First, run the development server:
+## Features
+- **Backend API** (NestJS):
+  - `GET /api/v1/apartments`: List all apartments.
+  - `GET /api/v1/apartments/{id}`: Get details of a specific apartment.
+  - `POST /api/v1/apartments`: Add a new apartment.
+  - `PUT /api/v1/apartments/{id}`: Update an apartment.
+  - **Swagger Documentation**: Interactive API documentation generated with Swagger for easy exploration of API endpoints  at `http://localhost:4000/api/docs`.
+
+- **Frontend Application** (Next.js):
+  - `Apartment Listing Page`: Displays a list of apartments at `http://localhost:3000/apartments`.
+  - `Apartment Details Page`: Shows detailed information about a specific apartment at `http://localhost:3000/apartments/{id}`.
+
+- **Search & Filter Functionality** (Bonus Task):
+  - Search apartments by name, unit number, or project on the listing page.
+
+- **Database**:
+  - **MySQL** as the relational database.
+  - **Indexing**: Added indexing to the columns frequently used in search queries to improve performance (e.g., `name`, `number`, and `project`).
+  - **Seeder**: A database seeder is included to populate the database with sample apartment data for easier testing and development.
+
+- **Code Quality**:
+  - **Linting**: Static code analysis using ESLint has been integrated into the project to enforce clean and maintainable code.
+
+## Requirements
+- Docker and Docker Compose must be installed on your system.
+
+## Installation
+
+### 1. Clone the repository
+Clone the repository to your local machine:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:KhaldMansour/ApartmentHub.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+cd apartment-hub
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Docker Setup
+For both backend and frontend, run the following:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Run Docker compose
+```
+docker-compose up --build
+```
 
-## Learn More
+This command will:
+- Build the Docker images for both the frontend and backend.
+- Set up the database as configured.
+- Start all services.
 
-To learn more about Next.js, take a look at the following resources:
+#### Access the Application
+- **Frontend**: Open your browser and go to `http://localhost:3000` to view the apartment listing page.
+- **Backend**: The backend API will be accessible at `http://localhost:4000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Bonus Task: Search and Filter
+On the apartment listing page, users can search by:
+- Apartment Name
+- Apartment Number
+- Project Name
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The search functionality allows users to filter apartments based on the specified criteria.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
